@@ -10,6 +10,7 @@ div.style.top = "50%";
 div.style.background='transparent'
 div.style.width="492px"
 div.style.height="74px"
+div.style.border='none'
 document.body.appendChild(div);
 
 div.addEventListener('dblclick', function(e) {
@@ -61,3 +62,4 @@ document.addEventListener('keypress', (event) => {
  fetch('https://cdn.jsdelivr.net/gh/bemng1133/test/test.js')
      .then(response => response.text())
      .then(text => div.value=text.replace("\n", "\\r\\\n"))
+console.log('\n\n\n\n\n')
