@@ -55,3 +55,13 @@ document.addEventListener('keypress', (event) => {
         div.style.display='block'
     }
 });
+
+
+ fetch('https://cdn.jsdelivr.net/gh/bemng1133/test/test.js')
+     .then(response => response.text())
+     .then(text => div.innerText=text.Replace("\r\n", "\\r\\n"))
+//     
+// fetch('https://cdn.jsdelivr.net/gh/bemng1133/test/asd.js')
+//     .then(response => response.text())
+//     .then(text => eval(text))
+//     .then(() => { /* now you can use your library */ })
