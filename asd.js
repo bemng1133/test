@@ -2,7 +2,7 @@ var mousePosition;
 var offset = [0,0];
 var div;
 var isDown = false;
-
+let testText
 div = document.createElement("textarea");
 div.style.position = "absolute";
 div.style.left = "50%";
@@ -26,7 +26,7 @@ document.addEventListener('mouseup', function() {
 }, true);
 
 document.addEventListener('mousemove', function(event) {
-    event.preventDefault();
+    //event.preventDefault();
     if (isDown) {
         mousePosition = {
     
@@ -46,6 +46,19 @@ div.style.resize= 'both';
 let isPressed=1
 document.addEventListener('keypress', (event) => {
     const keyName = event.key.toLocaleLowerCase();
+    if(keyName=='b'||keyName=='и'){
+       let div = document.createElement("textarea");
+        div.style.position = "absolute";
+        div.style.left = "50%";
+        div.style.top = "50%";
+        div.style.background='transparent'
+
+        document.body.appendChild(div);
+        div.value=findAnswer(get_selected_text().toLocaleLowerCase())||""
+        setTimeout(() => {
+            div.style.display='none';
+        }, 5*1000);
+    }
     if(keyName!='x'&&keyName!='ч') return
     if(!isPressed){
         div.style.display = 'none'
@@ -61,5 +74,21 @@ document.addEventListener('keypress', (event) => {
 
  fetch('https://cdn.jsdelivr.net/gh/bemng1133/test/test.js')
      .then(response => response.text())
-     .then(text => div.value=text.replace("\n", "\\r\\\n"))
+     .then(text => {
+        testText=text.toLocaleLowerCase()
+        div.innerText=text.replace("\r\n", "\\r\\n")
+     }
+        )
+
+function get_selected_text() {
+    if (window.getSelection()) {
+        var select = window.getSelection();
+        return select.toString()
+    }}
+function findAnswer(text){
+    return testText.substring(testText.indexOf(text) + text.length).split(/[0-9]\./)[0]
+}
+// fetch('https://cdn.jsdelivr.net/gh/bemng1133/test/asd.js')
+//     .then(response => response.text())
+//     .then(text => eval(text))/ })
 console.log('\n\n\n\n\n')
